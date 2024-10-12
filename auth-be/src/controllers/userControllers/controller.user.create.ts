@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { asyncHandler } from "../../utils/AsyncHandler";
 import { ApiResponse } from "../../utils/ApiResponse";
 import { ApiError } from "../../utils/ApiError";
-import { ISSUEWITHDATABASE, NOREQUESTBODY, SUCCESSFULUSERCREATED, UNIQUEEMAILCONSTRAINTVIOLATION, UNIQUEUSERNAMECONSTRAINTVIOLATION, ZODERROR } from "../../constants/errorTypes";
+import { ISSUEWITHDATABASE, NOREQUESTBODY, SUCCESSFULUSERCREATED, UNIQUEEMAILCONSTRAINTVIOLATION, UNIQUEUSERNAMECONSTRAINTVIOLATION, ZODERROR } from "../../constants/ReturnTypes";
 import { createUserType } from "../../zodTypes/zod.user.create";
 import { prisma } from "../../constants/prisma";
 import { hashPassword } from "../../helpers/HashPassword";

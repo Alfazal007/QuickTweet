@@ -4,3 +4,6 @@ export const UNIQUEUSERNAMECONSTRAINTVIOLATION = "The username is already in use
 export const UNIQUEEMAILCONSTRAINTVIOLATION = "The email is already in use";
 export const ISSUEWITHDATABASE = "Issue talking to the database";
 export const SUCCESSFULUSERCREATED = "User created successfully now verify the user"
+export const USERNOTFOUND = "User not found in the database"
+export const INVALIDOTP = "Invalid OTP provided, recheck or request new OTP"
+export const VERIFIEDUSER = "Successfully verified the user, now you can login"
