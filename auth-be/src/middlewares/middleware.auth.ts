@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { asyncHandler } from "../utils/AsyncHandler";
 import { ApiError } from "../utils/ApiError";
-import { UNAUTHORIZED, USERNOTFOUND } from "../constants/ReturnTypes";
+import { UNAUTHORIZED, USERNOTFOUND, USERNOTVERIFIED } from "../constants/ReturnTypes";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { envVariables } from "../config/envLoader";
 import { prisma } from "../constants/prisma";
@@ -10,6 +10,7 @@ interface User {
     id: string;
     username: string;
     email: string;
+    password: string;
 }
 
 declare global {
@@ -52,7 +53,9 @@ const authMiddleware = asyncHandler(async(req: Request, res: Response, next: Nex
             id: true,
             username: true,
             email: true,
-            refreshToken: true
+            refreshToken: true,
+            isVerified: true,
+            password: true
         },
     });
 
@@ -75,6 +78,9 @@ const authMiddleware = asyncHandler(async(req: Request, res: Response, next: Nex
                     USERNOTFOUND
                 )
             );
+    }
+    if(!userOfThisToken.isVerified) {
+        return res.status(400).json(new ApiError(400, USERNOTVERIFIED, []));
     }
     req.user = userOfThisToken;
     return next();

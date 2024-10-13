@@ -6,7 +6,7 @@ const hashPassword = async(plainPassword: string) => {
     return hashedPassword;
 }
 
-const isPasswordCorrect = async(plainPassword: string, hashedPassword: string) => {
+const isPasswordCorrect = async(plainPassword: string, hashedPassword: string): Promise<boolean> => {
     const isVerified = await bcrypt.compare(plainPassword, hashedPassword);
     return isVerified;
 }
