@@ -18,3 +18,5 @@ export const ISSUEUPLOADINGTOCLOUDINARY = "Error trying to store image, try agai
 export const UPDATEDPROFILEPICSUCCESSFULLY = "Updated the profile picture successfully"
 export const PROFILEPICNOTFOUND = "There is no profile pic to be deleted"
 export const PROFILEPICDELETED = "The profile pic has been deleted successfully"
+export const NODATATOBEUPLOADED = "Provide something to be tweeted"
+export const CREATEDTWEET = "Successfully created new tweet"

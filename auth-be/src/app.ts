@@ -32,6 +32,9 @@ app.use(cookieParser());
 import { userRouter } from "./routers/user.router";
 app.use("/api/v1/user", userRouter);
 
+import { tweetRouter } from "./routers/tweet.router";
+app.use("/api/v1/tweet", tweetRouter);
+
 export {
     app
 }
