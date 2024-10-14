@@ -16,3 +16,5 @@ export const PASSWORDUPDATEDSUCCESSFULLY = "Password updated successfully"
 export const IMAGEUPLOADERROR = "Provide a valid image to be uploaded";
 export const ISSUEUPLOADINGTOCLOUDINARY = "Error trying to store image, try again later"
 export const UPDATEDPROFILEPICSUCCESSFULLY = "Updated the profile picture successfully"
+export const PROFILEPICNOTFOUND = "There is no profile pic to be deleted"
+export const PROFILEPICDELETED = "The profile pic has been deleted successfully"
