@@ -11,6 +11,7 @@ interface User {
     username: string;
     email: string;
     password: string;
+    profilePic: string;
 }
 
 declare global {
@@ -55,7 +56,8 @@ const authMiddleware = asyncHandler(async(req: Request, res: Response, next: Nex
             email: true,
             refreshToken: true,
             isVerified: true,
-            password: true
+            password: true,
+            profilePic: true
         },
     });
 

@@ -13,3 +13,6 @@ export const SUCCESSFULLYLOGGEDIN = "User successfully logged in"
 export const UNAUTHORIZED = "Forbidden request! Re-login"
 export const LOGGEDOUT = "Logged out successfully"
 export const PASSWORDUPDATEDSUCCESSFULLY = "Password updated successfully"
+export const IMAGEUPLOADERROR = "Provide a valid image to be uploaded";
+export const ISSUEUPLOADINGTOCLOUDINARY = "Error trying to store image, try again later"
+export const UPDATEDPROFILEPICSUCCESSFULLY = "Updated the profile picture successfully"

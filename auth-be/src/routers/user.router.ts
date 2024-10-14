@@ -5,6 +5,8 @@ import { loginUser } from "../controllers/userControllers/controller.user.loginU
 import { authMiddleware } from "../middlewares/middleware.auth";
 import { logoutUser } from "../controllers/userControllers/controller.user.logout";
 import { updatePassword } from "../controllers/userControllers/controller.user.updatePassword";
+import { upload } from "../middlewares/middleware.multer";
+import { updateProfilePic } from "../controllers/userControllers/controller.user.addProfilePic";
 
 const userRouter = Router();
 
@@ -13,6 +15,7 @@ userRouter.route("/verify-user").post(verifyUser);
 userRouter.route("/login-user").post(loginUser);
 userRouter.route("/logout").post(authMiddleware, logoutUser);
 userRouter.route("/change-password").put(authMiddleware, updatePassword);
+userRouter.route("/change-profile-pic").put(authMiddleware, upload.single("profilePic"), updateProfilePic);
 
 export {
     userRouter
