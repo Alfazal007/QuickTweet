@@ -25,7 +25,7 @@ model User {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   tweets        Tweet[]
-  replies       ReplyTweet[]
+  replies       Reply[]
   reposts       Repost[]
 }
 
@@ -34,29 +34,29 @@ model Tweet {
   description   String   @default("")
   picture       String   @default("")
   createdAt     DateTime @default(now())
-  creator       User     @relation(fields: [creatorId], references: [id])
+  creator       User     @relation(fields: [creatorId], references: [id], onDelete: Cascade)
   creatorId     String
   repostCount   Int      @default(0)
   replyCount    Int      @default(0)
-  replies       ReplyTweet[]
+  replies       Reply[]
   reposts       Repost[]
 }
 
-model ReplyTweet {
+model Reply {
   id            String   @id @default(uuid())
   description   String   @default("")
   createdAt     DateTime @default(now())
-  tweet         Tweet    @relation(fields: [tweetId], references: [id])
+  tweet         Tweet    @relation(fields: [tweetId], references: [id], onDelete: Cascade)
   tweetId       String
-  creator       User     @relation(fields: [creatorId], references: [id])
+  creator       User     @relation(fields: [creatorId], references: [id], onDelete: Cascade)
   creatorId     String
 }
 
 model Repost {
   id            String   @id @default(uuid())
   createdAt     DateTime @default(now())
-  tweet         Tweet    @relation(fields: [tweetId], references: [id])
+  tweet         Tweet    @relation(fields: [tweetId], references: [id], onDelete: Cascade)
   tweetId       String
-  creator       User     @relation(fields: [creatorId], references: [id])
+  creator       User     @relation(fields: [creatorId], references: [id], onDelete: Cascade)
   creatorId     String
 }

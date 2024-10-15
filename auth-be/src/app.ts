@@ -35,6 +35,13 @@ app.use("/api/v1/user", userRouter);
 import { tweetRouter } from "./routers/tweet.router";
 app.use("/api/v1/tweet", tweetRouter);
 
+
+import { repostRouter } from "./routers/repost.router";
+app.use("/api/v1/repost", repostRouter);
+
+import { replyRouter } from "./routers/reply.router";
+app.use("/api/v1/reply", replyRouter);
+
 export {
     app
 }
