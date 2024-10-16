@@ -9,7 +9,7 @@ const tweetRouter = Router();
 
 tweetRouter.route("/create").post(authMiddleware, upload.single("tweetPic"), createTweet);
 tweetRouter.route("/delete").delete(authMiddleware, deleteTweetController);
-tweetRouter.route("/user/:userid/page/:page/limit/:limit").get(authMiddleware, getUserTweets);
+tweetRouter.route("/user/:username/page/:page").get(authMiddleware, getUserTweets);
 tweetRouter.route("/get/tweetId/:tweetId").get(authMiddleware, getTweet);
 
 export {

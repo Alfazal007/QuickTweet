@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { asyncHandler } from "../../utils/AsyncHandler";
 import { ApiError } from "../../utils/ApiError";
-import { INVALIDTWEETID, ISSUEWITHDATABASE, SUCCESSFULLYFETCHEDTHEDATA } from "../../constants/ReturnTypes";
+import { INVALIDTWEETID, ISSUEWITHDATABASE, SUCCESSFULLYFETCHEDTHEDATA, TWEETNOTFOUND } from "../../constants/ReturnTypes";
 import { prisma } from "../../constants/prisma";
 import { ApiResponse } from "../../utils/ApiResponse";
 import { client } from "../../constants/redisClient";
@@ -32,6 +32,9 @@ const getTweet = asyncHandler(async(req: Request, res: Response) => {
                 createdAt: true
             }
         });
+        if(!tweet) {
+            return res.status(400).json(new ApiError(400, TWEETNOTFOUND, []));
+        }
         await client.set(tweetId, JSON.stringify(tweet), {
             "EX": singleQueryExpiry
         });

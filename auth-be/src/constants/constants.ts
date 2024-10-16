@@ -1,1 +1,1 @@
-export const singleQueryExpiry = 5 * 60 * 60
+export const singleQueryExpiry = 5 * 60 * 60;
