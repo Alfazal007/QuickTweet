@@ -4,6 +4,7 @@ import { ApiError } from "../../utils/ApiError";
 import { INVALIDURL, ISSUEWITHDATABASE, SUCCESSFULLYFETCHEDTHEDATA } from "../../constants/ReturnTypes";
 import { prisma } from "../../constants/prisma";
 import { ApiResponse } from "../../utils/ApiResponse";
+import { client } from "../../constants/redisClient";
 
 const getUserTweets = asyncHandler(async(req: Request, res: Response) => {
     const { userid, page, limit } = req.params;
@@ -16,6 +17,10 @@ const getUserTweets = asyncHandler(async(req: Request, res: Response) => {
         return res.status(400).json(new ApiError(400, INVALIDURL, []));
     }
     try {
+        const tweetsFromRedis = await client.hGetAll(`${userid}+${skip}+${limit}`);
+        if(tweetsFromRedis) {
+            return res.status(200).json(new ApiResponse(200, SUCCESSFULLYFETCHEDTHEDATA, tweetsFromRedis));
+        }
         const tweets = await prisma.tweet.findMany({
             where: {
                 creatorId: userid

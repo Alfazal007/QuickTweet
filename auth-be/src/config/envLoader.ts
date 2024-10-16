@@ -14,6 +14,8 @@ const envVariables = {
     cloudinaryApiSecret: process.env.CLOUDINARY_API_SECRET,
     cloudinaryApiKey: process.env.CLOUDINARY_API_KEY,
     cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME,
+    redisHost: process.env.REDIS_HOST,
+    redisPort: process.env.REDIS_PORT
 }
 
 export { envVariables }

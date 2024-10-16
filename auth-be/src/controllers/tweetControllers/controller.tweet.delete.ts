@@ -5,6 +5,7 @@ import { DELETETWEETSUCCESSFUL, ISSUEWITHDATABASE, NOREQUESTBODY, TWEETNOTFOUND,
 import { deleteTweetType } from "../../zodTypes/zod.tweet.deleteTweet";
 import { prisma } from "../../constants/prisma";
 import { ApiResponse } from "../../utils/ApiResponse";
+import { deleteFromCloudinary } from "../../helpers/Cloudinary";
 
 const deleteTweetController = asyncHandler(async(req: Request, res: Response) => {
     if(!req.body) {
@@ -35,6 +36,9 @@ const deleteTweetController = asyncHandler(async(req: Request, res: Response) =>
                 id: parsedData.data.tweetId
             }
         });
+        if(tweetToBeDeleted.picture) {
+            await deleteFromCloudinary(tweetToBeDeleted.picture);
+        }
         return res.status(200).json(new ApiResponse(200, DELETETWEETSUCCESSFUL, {}));
     } catch(err) {
         return res.status(400).json(new ApiError(400, ISSUEWITHDATABASE, []));
