@@ -27,6 +27,8 @@ model User {
   tweets        Tweet[]
   replies       Reply[]
   reposts       Repost[]
+  following     Follow[] @relation("followerRelation")
+  followers     Follow[] @relation("followingRelation")
 }
 
 model Tweet {
@@ -60,3 +62,13 @@ model Repost {
   creator       User     @relation(fields: [creatorId], references: [id], onDelete: Cascade)
   creatorId     String
 }
+
+model Follow {
+  id            String   @id @default(uuid())
+  followerId    String
+  followingId   String
+  follower      User     @relation("followerRelation", fields: [followerId], references: [id], onDelete: Cascade)
+  following     User     @relation("followingRelation", fields: [followingId], references: [id], onDelete: Cascade)
+  @@unique([followerId, followingId])
+}
+

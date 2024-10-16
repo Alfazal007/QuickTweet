@@ -42,6 +42,8 @@ app.use("/api/v1/repost", repostRouter);
 import { replyRouter } from "./routers/reply.router";
 app.use("/api/v1/reply", replyRouter);
 
+import { followRouter } from "./routers/follow.router";
+app.use("/api/v1/follow", followRouter);
 export {
     app
 }
