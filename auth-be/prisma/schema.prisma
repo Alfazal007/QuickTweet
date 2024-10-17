@@ -42,6 +42,7 @@ model Tweet {
   replyCount    Int      @default(0)
   replies       Reply[]
   reposts       Repost[]
+  hashtags      String[]
 }
 
 model Reply {

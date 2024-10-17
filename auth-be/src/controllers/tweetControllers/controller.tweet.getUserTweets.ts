@@ -53,6 +53,7 @@ const getUserTweets = asyncHandler(async(req: Request, res: Response) => {
                 replyCount: true,
                 repostCount: true,
                 description: true,
+                hashtags: true
             }
         });
         if(tweets.length > 0) {

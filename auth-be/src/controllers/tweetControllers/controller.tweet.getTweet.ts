@@ -29,7 +29,8 @@ const getTweet = asyncHandler(async(req: Request, res: Response) => {
                 picture: true,
                 creatorId: true,
                 description: true,
-                createdAt: true
+                createdAt: true,
+                hashtags: true
             }
         });
         if(!tweet) {

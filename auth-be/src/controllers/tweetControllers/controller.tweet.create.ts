@@ -29,17 +29,24 @@ const createTweet = asyncHandler(async(req: Request, res: Response) => {
     if(!newTweetImgLocalPath && !req.body.description) {
         return res.status(400).json(new ApiError(400, NODATATOBEUPLOADED, []))
     }
+    let hashtags = [];
+    if(req.body.hashtags) {
+        hashtags = req.body.hashtags.split(",");
+    }
+    hashtags = hashtags.filter((str: string) => str.length > 0);
     try {
         const newTweet = await prisma.tweet.create({
             data: {
                 description: toBeUpdated.descsription,
                 picture: toBeUpdated.image,
-                creatorId: req.user.id
+                creatorId: req.user.id,
+                hashtags
             },
             select: {
                 description: true,
                 picture: true,
-                creatorId: true
+                creatorId: true,
+                hashtags: true
             }
         });
         return res.status(201).json(new ApiResponse(201, CREATEDTWEET, newTweet));

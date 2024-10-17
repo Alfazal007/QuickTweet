@@ -50,6 +50,7 @@ const getFeed = asyncHandler(async(req: Request, res: Response) => {
                 description: true,
                 replyCount: true,
                 repostCount: true,
+                hashtags: true
             },
             orderBy: {
                 createdAt: 'desc'
